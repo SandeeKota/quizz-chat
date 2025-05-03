@@ -7,7 +7,7 @@ interface Props {
 }
 const AppView: React.FC<Props> = ({ style, children }) => {
   return (
-    <View style={[{ ...style, ...styles.container }]} >
+    <View style={[{ ...styles.container, ...style }]} >
       {children}
     </View>
   )

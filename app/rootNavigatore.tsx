@@ -1,29 +1,15 @@
 import { StatusBar, StyleSheet, Text, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import { Stack, useRouter } from 'expo-router';
+import { router, Stack, useRouter } from 'expo-router';
 import EntryScreen from './components/entryScreen';
+import { useDispatch } from 'react-redux';
+import { logout, loadToken } from '@/store/authSlice';
+import { isTokenExpired } from '@/utils/jwt';
+import { removeToken } from '@/utils/storage/storage';
+import { getToken } from '@/utils/tokenManager';
+import useAuth from './hooks/useAuth';
 
 const RootNavigatore = () => {
-
-    const [isLoading, setIsLoading] = useState(true);
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const router = useRouter();
-
-
-    useEffect(() => {
-        setTimeout(() => {
-            setIsLoading(false);
-            setTimeout(() => {
-                router.replace("/quizz")
-            }, 300);
-        }, 300);
-    }, []);
-
-    if (isLoading) {
-        return (
-            <EntryScreen />
-        )
-    }
 
     return (
         <React.Fragment>
@@ -31,6 +17,7 @@ const RootNavigatore = () => {
                 backgroundColor="#000000" // Set your desired background color
                 barStyle="light-content"
             />
+
             <Stack
                 screenOptions={{
                     headerShown: false,

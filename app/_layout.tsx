@@ -5,8 +5,6 @@ import { StatusBar } from "react-native";
 import { Provider } from "react-redux";
 import RootNavigatore from "./rootNavigatore";
 
-
-
 export default function RootLayout() {
   return (
     <Provider store={store} >

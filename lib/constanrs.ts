@@ -6,6 +6,13 @@ export interface ChatMessageType {
     isSelf?: boolean;
 }
 
+export type QuizQuestion = {
+    id: number;
+    question: string;
+    options: string[];
+    correctAnswer: string;
+};
+
 let chatMessages: ChatMessageType[] = [
     {
         chatRoom: "661b43f2e8c9a8a4317a91a1", // chatRoomId
@@ -49,5 +56,39 @@ const ChatData: ChatMessageType[] = chatMessages.map((msg, index) => ({
     ...msg,
     isSelf: index % 2 !== 0  // odd index = true, even index = false
 }));
+
+export const quizQuestions: QuizQuestion[] = [
+    {
+        id: 1,
+        question: "What is the capital city of France?",
+        options: ["Paris", "Berlin", "Madrid", "London"],
+        correctAnswer: "Paris",
+    },
+    {
+        id: 2,
+        question: "Which planet is known as the Red Planet?",
+        options: ["Earth", "Mars", "Venus", "Saturn"],
+        correctAnswer: "Mars",
+    },
+    {
+        id: 3,
+        question: "What is the largest ocean on Earth?",
+        options: ["Atlantic Ocean", "Indian Ocean", "Pacific Ocean", "Arctic Ocean"],
+        correctAnswer: "Pacific Ocean",
+    },
+    {
+        id: 4,
+        question: "Who wrote 'Romeo and Juliet'?",
+        options: ["William Shakespeare", "Charles Dickens", "Leo Tolstoy", "Mark Twain"],
+        correctAnswer: "William Shakespeare",
+    },
+    {
+        id: 5,
+        question: "What is the boiling point of water at sea level?",
+        options: ["90°C", "100°C", "80°C", "120°C"],
+        correctAnswer: "100°C",
+    },
+];
+
 
 export default ChatData;

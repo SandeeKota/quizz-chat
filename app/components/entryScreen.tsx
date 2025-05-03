@@ -5,8 +5,10 @@ import AppText from './gloobal/Apptext'
 import Animated, { Easing, FadeIn, FadeOut, useAnimatedStyle, useSharedValue, withRepeat, withSequence, withTiming } from 'react-native-reanimated';
 import { COLORS } from '@/lib/colors';
 
-
-const EntryScreen = () => {
+interface Props {
+    isLoding: boolean
+}
+const EntryScreen: React.FC<Props> = ({ isLoding }) => {
     const scale = useSharedValue(0); // 👈 shared value for opacity
     useEffect(() => {
         scale.value = withRepeat(
@@ -24,19 +26,19 @@ const EntryScreen = () => {
     }));
 
     return (
-        <AppView style={styles.container} >
+        <View style={styles.container} >
             <AppText title='WELCOME' size={30} />
             <AppText title='TO' size={30} />
             <AppText title='QPTIC-QUIZZ' size={30} />
 
-            <Animated.View
+            {(isLoding) && <Animated.View
                 style={[styles.loadingBox, animatedStyle]} // 👈 applying the scaling animation
                 entering={FadeIn.duration(500)}
                 exiting={FadeOut.duration(500)}
             >
                 <Text style={styles.loadingText}>Loading...</Text>
-            </Animated.View>
-        </AppView>
+            </Animated.View>}
+        </View>
     )
 }
 

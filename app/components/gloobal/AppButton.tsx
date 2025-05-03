@@ -5,14 +5,16 @@ import { COLORS } from '@/lib/colors'
 interface Props {
     style?: StyleProp<ViewStyle> | undefined,
     children: React.ReactNode,
-    onPress?: (data?: any) => void
+    onPress?: (data?: any) => void,
+    disabled?: boolean
 }
-const AppButton: React.FC<Props> = ({ style, children, onPress }) => {
+const AppButton: React.FC<Props> = ({ style, children, onPress, disabled = false }) => {
     return (
         <TouchableHighlight
             onPress={() => onPress && onPress()}
             style={style}
             underlayColor={COLORS.blue}
+            disabled={disabled}
         >
             {children}
         </TouchableHighlight>
